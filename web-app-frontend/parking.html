@@ -60,6 +60,8 @@
                         self.set('clientPosition', new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
                         self.addMarker({'position': self.get('clientPosition'), 'bounds': true});
                         self.addShape('Circle', { 'strokeWeight': 0, 'fillColor': "#008595", 'fillOpacity': 0.25, 'center': self.get('clientPosition'), 'radius': 15, clickable: false });
+                        <!--todo add marker for routing-->
+                        <!--todo query routing api-->
 //                        $.getJSON( 'file:///demo.json', function(data) {
 //                            $.each( data.markers, function(i, marker) {
 //                                self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds':true } ).click(function() {
