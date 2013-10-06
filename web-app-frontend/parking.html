@@ -33,6 +33,7 @@
         <h1>Nearest Likely free Parking Spaces</h1>
     </div>
 </header>
+<div class="directions"></div>
 <div class="container_16">
     <article class="grid_16">
         <div class="item rounded dark">
@@ -50,45 +51,67 @@
 <script type="text/javascript" src="ui/jquery.ui.map.js"></script>
 <script type="text/javascript" src="ui/jquery.ui.map.overlays.js"></script>
 <script type="text/javascript" src="ui/jquery.ui.map.extensions.js"></script>
+<script type="text/javascript" src="ui/jquery.ui.map.services.js"></script>
 <script type="text/javascript">
     $(function () {
 
-        $.getJSON('http://localhost/demo.json', function (data) {
-            $.each(data.markers, function (i, marker) {
-                self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds': true }).click(function () {
-                    self.openInfoWindow({ 'content': marker.content }, this);
-                });
-            });
-        });
+//        $.getJSON('http://localhost/demo.json', function (data) {
+//            $.each(data.streets, function (i, marker) {
+//                self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds': true }).click(function () {
+//                    self.openInfoWindow({ 'content': marker.content }, this);
+//                });
+//            });
+//        });
 
-        var markers = [
+        var streets = [
             {
-                "latitude": 57.7973333,
-                "longitude": 12.0502107,
-                "title": "Angered",
-                "content": "Representing :)"
+                "name": "Abbey Orchard Street",
+                "lat": 51.49777913,
+                "lon": -0.13242858,
+                "spaces": 8,
+                "expected_occupies": 2,
+                "confidence": 0.9
             },
             {
-                "latitude": 57.6969943,
-                "longitude": 11.9865,
-                "title": "Gothenburg",
-                "content": "Swedens second largest city"
+                "name": "Adelphi Terrace",
+                "lat": 51.50903092,
+                "lon": -0.12179693,
+                "spaces": 5,
+                "expected_occupies": 3,
+                "confidence": 0.8
             }
         ]
 
         demo.add(function () {
+//            $('#map_canvas').gmap('displayDirections', { 'origin': new google.maps.LatLng(42.345573,-71.098326), 'destination': new google.maps.LatLng(42.345573,-72.098326), 'travelMode': google.maps.DirectionsTravelMode.DRIVING }, { 'panel': document.getElementById('directions')}, function(success, result) {
+//                if ( success )
+//                    alert('Results found!');
+//            });
+
             $('#map_canvas').gmap({ 'disableDefaultUI': true, 'callback': function () {
                 var self = this;
                 self.getCurrentPosition(function (position, status) {
                     if (status === 'OK') {
                         self.set('clientPosition', new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-                        self.addMarker({'position': self.get('clientPosition'), 'bounds': true});
-                        self.addShape('Circle', { 'strokeWeight': 0, 'fillColor': "#008595", 'fillOpacity': 0.25, 'center': self.get('clientPosition'), 'radius': 15, clickable: false });
+                        var clientPosition = self.get('clientPosition');
+                        self.addMarker({'position': clientPosition, 'bounds': true});
+                        self.addShape('Circle', { 'strokeWeight': 0, 'fillColor': "#008595", 'fillOpacity': 0.25, 'center': clientPosition, 'radius': 15, clickable: false });
+
+
+//                        self.displayDirections({ 'origin': clientPosition,
+//                            'destination': streets[0],
+//                            'travelMode': google.maps.DirectionsTravelMode.DRIVING },
+//                                { 'panel': document.getElementById('directions')}, function(success, result) {
+//                            if ( success )
+//                                alert('Results found!');
+//                        });
+
                         <!--todo add marker for routing-->
                         <!--todo query routing api-->
-                        $.each(markers, function (i, marker) {
-                            self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds': true }).click(function () {
-                                self.openInfoWindow({ 'content': marker.content }, this);
+                        $.each(streets, function (i, marker) {
+                            self.addMarker({ 'position': new google.maps.LatLng(marker.lat, marker.lon), 'bounds': true }).mouseover(function () {
+                                var content = ('Street: ' + marker.name + ',  Spaces:' + marker.spaces + ',  Chance of free space: ' + marker.confidence + ',  ' + marker.expected_occupies + ' probably occupied');
+                                self.openInfoWindow({ 'content': content}, this);
                             });
                         });
 
