@@ -20,11 +20,11 @@
 
     <link rel="stylesheet" type="text/css"
           href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css"/>
-    <link type="text/css" rel="stylesheet" href="jquery-ui-map-3.0-rc/demos/css/960/min/960.css"/>
-    <link type="text/css" rel="stylesheet" href="jquery-ui-map-3.0-rc/demos/css/960/min/960_16_col.css"/>
-    <link type="text/css" rel="stylesheet" href="jquery-ui-map-3.0-rc/demos/css/normalize/min/normalize.css"/>
-    <link type="text/css" rel="stylesheet" href="jquery-ui-map-3.0-rc/demos/css/prettify/min/prettify.css"/>
-    <link type="text/css" rel="stylesheet" href="jquery-ui-map-3.0-rc/demos/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="css/960/min/960.css"/>
+    <link type="text/css" rel="stylesheet" href="css/960/min/960_16_col.css"/>
+    <link type="text/css" rel="stylesheet" href="css/normalize/min/normalize.css"/>
+    <link type="text/css" rel="stylesheet" href="css/prettify/min/prettify.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
     <script type="text/javascript" src="js/modernizr-2.0.6/modernizr.min.js"></script>
 </head>
 <body>
@@ -52,6 +52,30 @@
 <script type="text/javascript" src="ui/jquery.ui.map.extensions.js"></script>
 <script type="text/javascript">
     $(function () {
+
+        $.getJSON('http://localhost/demo.json', function (data) {
+            $.each(data.markers, function (i, marker) {
+                self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds': true }).click(function () {
+                    self.openInfoWindow({ 'content': marker.content }, this);
+                });
+            });
+        });
+
+        var markers = [
+            {
+                "latitude": 57.7973333,
+                "longitude": 12.0502107,
+                "title": "Angered",
+                "content": "Representing :)"
+            },
+            {
+                "latitude": 57.6969943,
+                "longitude": 11.9865,
+                "title": "Gothenburg",
+                "content": "Swedens second largest city"
+            }
+        ]
+
         demo.add(function () {
             $('#map_canvas').gmap({ 'disableDefaultUI': true, 'callback': function () {
                 var self = this;
@@ -62,13 +86,12 @@
                         self.addShape('Circle', { 'strokeWeight': 0, 'fillColor': "#008595", 'fillOpacity': 0.25, 'center': self.get('clientPosition'), 'radius': 15, clickable: false });
                         <!--todo add marker for routing-->
                         <!--todo query routing api-->
-//                        $.getJSON( 'file:///demo.json', function(data) {
-//                            $.each( data.markers, function(i, marker) {
-//                                self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds':true } ).click(function() {
-//                                    self.openInfoWindow({ 'content': marker.content }, this);
-//                                });
-//                            });
-//                        });
+                        $.each(markers, function (i, marker) {
+                            self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds': true }).click(function () {
+                                self.openInfoWindow({ 'content': marker.content }, this);
+                            });
+                        });
+
                     }
                 });
             }});
