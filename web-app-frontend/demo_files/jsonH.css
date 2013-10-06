@@ -1,0 +1,306 @@
+@import url(tree.css);
+
+body {
+    margin: 0px;
+    padding: 1em 1em 2.8em;
+    font-family: Tahoma, arial, simsun;
+    font-size: 14px;
+    background-color: #fafaff;
+}
+
+div, form, img, ol, dl, dt, dd, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+ul, ol, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+em {
+    font-style: normal;
+}
+
+hr {
+    display: none;
+}
+
+/**/
+#jsonNav {
+    height @ : 100 %;
+}
+
+#panel {
+    box-shadow: 0 0 0 #fff, 4px 3px 5px rgba(50, 50, 50, 0.4);
+    padding: 12px 2px 12px 12px;
+    width: 512px;
+    height: 85%;
+    max-height: 500px;
+    position: fixed;
+    right: 1em;
+    top: 1em;
+    border-radius: 4px;
+    background-color: #eee;
+    border: 1px solid #e8e8e8;
+}
+
+#panel.min {
+    width: 10px;
+    height: 1px;
+}
+
+#panel.min #valueAct {
+    display: none;
+}
+
+#minBtn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+}
+
+#minBtn:hover {
+    color: #577cff;
+}
+
+#valueAct {
+    height: 100%;
+    overflow: auto;
+}
+
+#saveBtn {
+    float: left;
+}
+
+#undoBtn {
+    margin-left: 4em;
+}
+
+#undoBtn, #redoBtn {
+    float: left;
+    font-family: Tahoma, arial, simsun;
+}
+
+#showPath {
+    width: 420px;
+    background-color: #ccc;
+}
+
+#showKey {
+    width: 200px;
+    background-color: #ccc;
+}
+
+#showKey.isArrayElm {
+}
+
+#showKey.isArrayElm~span {
+    visibility: hidden;
+}
+
+.lableInput #showKey~span {
+    font-weight: bold;
+}
+
+#showValue {
+    width: 475px;
+    height: 270px;
+    padding: 3px 6px;
+    border-radius: 2px;
+}
+
+.inputTitle {
+    display: inline-block;
+    width: 4em;
+    margin: 0 0 1em;
+}
+
+#pathTips {
+    height: 1.5em;
+    line-height: 1.6em;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #eee;
+    color: #666;
+    padding: 0.2em 1em 0;
+    border-top: 1px solid #fff;
+}
+
+button {
+    border-radius: 2px;
+    margin: 0.5em 0 0;
+}
+
+#msgBox {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    height: 38px;
+    line-height: 14px;
+    padding-right: 24px;
+    padding-top: 5px;
+    text-align: right;
+}
+
+.textInpub {
+    padding: 3px 6px;
+    border-radius: 2px;
+}
+
+#mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+}
+
+#enterInputDialog {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -170px 0 0 -280px;
+    padding: 20px;
+    width: 560px;
+    height: 340px;
+    text-align: right;
+    border-radius: 6px;
+    box-shadow: 6px 5px 7px rgba(50, 50, 50, 0.4);
+    background-color: #fafaff;
+    border: 1px solid #e8e8e8;
+}
+
+#enterValue {
+    width: 550px;
+    height: 300px;
+    border-radius: 2px;
+}
+
+#enterInputTips {
+    text-align: left;
+    line-height: 1.5em;
+}
+
+.tools2 {
+    padding: 0 1em 0 0;
+    text-align: right;
+}
+
+.noIco .ico {
+    display: none;
+}
+
+.folderIco .ico {
+    display: none;
+}
+
+.folderIco .elmBox {
+    padding: 0 0 0 20px;
+}
+
+.folderIco .node .elmBox {
+    background-image: url(treePic/elm.png);
+    background-position: 2px 0;
+    background-repeat: no-repeat;
+}
+
+.folderIco .elmBox {
+    background-image: url(treePic/objectOpen.png);
+    background-position: 2px 0;
+    background-repeat: no-repeat;
+}
+
+.noIco.folderIco .elmBox {
+    background-image: none;
+    padding: 0;
+}
+
+.value {
+    display: none;
+    padding: 0 8px;
+}
+
+.object>.row .elm {
+    color: #333;
+    font-weight: normal;
+}
+
+.object>.row .elm:after {
+    content: "";
+}
+
+.object>.elmList>.elmBlock>.row .elm:after {
+}
+
+.array>.elmList>.elmBlock>.row .elm {
+    font-weight: normal;
+    color: #000;
+    display @ : none;
+}
+
+.showValueInNav .array>.elmList>.node>.row .elm {
+    display: none;
+}
+
+.showValueInNav .array>.elmList>.array>.row .elm {
+    display: inline;
+}
+
+.array>.elmList>.array>.row .elm {
+}
+
+.elm, .array>.elmList>.array>.row .elm {
+    color: #4a0;
+    font-weight: bold;
+    display: inline;
+}
+
+.showValueInNav .elm:after {
+    content: "  :";
+    color: #2c3;
+    font-weight: bold;
+}
+
+.array>.elmList>.array>.row .elm:after {
+    content: "";
+    color: #2c3;
+    font-weight: bold;
+}
+
+.showValueInNav .value {
+    display: inline;
+}
+
+.showValueInNav .array>.elmList>.elmBlock>.row .elm {
+}
+
+.string>.row .value {
+    color: #f63;
+}
+
+.number>.row .value {
+    color: #cc00ff;
+}
+
+.null>.row .value {
+    color: #aaa;
+}
+
+.boolean>.row .value {
+    color: #09c;
+}
+
+/**/

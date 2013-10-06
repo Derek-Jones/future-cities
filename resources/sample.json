@@ -1,0 +1,20 @@
+{
+    "streets" : [
+        {
+            "name": "Abbey Orchard Street",
+            "lat": 51.49777913,
+            "lon": -0.13242858,
+            "spaces": 8,
+            "expected_occupies": 2,
+            "confidence": 0.9
+        },
+        {
+            "name": "Adelphi Terrace",
+            "lat": 51.50903092,
+            "lon": -0.12179693,
+            "spaces": 5,
+            "expected_occupies": 3,
+            "confidence": 0.8
+        }
+    ]
+}
