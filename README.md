@@ -34,3 +34,5 @@ Github link: https://github.com/Derek-Jones/future-cities
 Ipython notebook file to rebuild the model: https://github.com/Derek-Jones/future-cities/blob/master/Future%20city.ipynb
 
 App link: http://derek-jones.github.io/future-cities/
+
+Presentation link: https://docs.google.com/presentation/d/1drYgu8Srsqlx70eZD6ptcsvzdADU50qqut0NEl-SJwU/edit?usp=sharing
