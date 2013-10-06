@@ -26,7 +26,11 @@ R program for creating Relative Neighborhood Graph from unique-lat-long-with-hea
 In A Nutshell
 =============
 Team name: Parking Utopia
+
 App description: From current location, give directions to closest spaces that are likely to be available at the current time. Model built from historical data of parking space usage. Predicts usage for every 5 minute interval for every day of the week.
+
 Github link: https://github.com/Derek-Jones/future-cities
+
 Ipython notebook file to rebuild the model: https://github.com/Derek-Jones/future-cities/blob/master/Future%20city.ipynb
+
 App link: http://derek-jones.github.io/future-cities/
