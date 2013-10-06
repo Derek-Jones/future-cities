@@ -55,13 +55,13 @@
 <script type="text/javascript">
     $(function () {
 
-//        $.getJSON('http://localhost/demo.json', function (data) {
-//            $.each(data.streets, function (i, marker) {
-//                self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds': true }).click(function () {
-//                    self.openInfoWindow({ 'content': marker.content }, this);
-//                });
-//            });
-//        });
+        $.getJSON('http://localhost/demo.json', function (data) {
+            $.each(data.streets, function (i, marker) {
+                self.addMarker({ 'position': new google.maps.LatLng(marker.latitude, marker.longitude), 'bounds': true }).click(function () {
+                    self.openInfoWindow({ 'content': marker.content }, this);
+                });
+            });
+        });
 
         var streets = [
             {
@@ -110,7 +110,7 @@
                         <!--todo query routing api-->
                         $.each(streets, function (i, marker) {
                             self.addMarker({ 'position': new google.maps.LatLng(marker.lat, marker.lon), 'bounds': true }).mouseover(function () {
-                                var content = ('Street: ' + marker.name + ',  Spaces:' + marker.spaces + ',  Chance of free space: ' + marker.confidence + ',  ' + marker.expected_occupies + ' probably occupied');
+                                var content = ('Street: ' + marker.name + ',   probably ' + marker.expected_occupies + ' occupied out of '+ marker.spaces +  ' spaces, Chance: ' + marker.confidence);
                                 self.openInfoWindow({ 'content': content}, this);
                             });
                         });
